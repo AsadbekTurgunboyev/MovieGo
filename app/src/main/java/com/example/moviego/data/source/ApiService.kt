@@ -8,4 +8,7 @@ interface ApiService {
 
     @GET("popular")
     suspend fun getPopularMovies(): PopularMoviesModels
+
+    @GET("top_rated")
+    suspend fun getTopRatedMovies(): PopularMoviesModels
 }

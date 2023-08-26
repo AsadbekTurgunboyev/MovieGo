@@ -4,4 +4,6 @@ import com.example.moviego.domain.models.PopularMoviesModels
 
 interface MainRepository {
     suspend fun getPopularMovies(): PopularMoviesModels
+
+    suspend fun getTopRatedMovies(): PopularMoviesModels
 }
