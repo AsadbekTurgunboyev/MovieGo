@@ -14,4 +14,9 @@ class MainRepositoryImp(val apiService: ApiService): MainRepository {
     override suspend fun getTopRatedMovies(): PopularMoviesModels {
         return apiService.getTopRatedMovies()
     }
+
+    override suspend fun getNowPlayingMovies(): PopularMoviesModels {
+        return apiService.getNowPlayingMovies()
+    }
+
 }

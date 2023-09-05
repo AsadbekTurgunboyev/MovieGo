@@ -12,5 +12,6 @@
     <color name="primaryColor">#FFB20D</color>
     <color name="secondPrimaryColor">#F3D592</color>
 
+    <color name="shimmer_loading_color">#7e7e82</color>
     <color name="splashScreenBackground">#35383F</color>
 </resources>

@@ -10,6 +10,7 @@ import com.example.moviego.databinding.FragmentHomeBinding
 import com.example.moviego.ui.main.home.adapter.PopularMoviesAdapter
 import com.example.moviego.ui.main.home.adapter.TypeAdapter
 import com.example.moviego.ui.main.home.viewmodel.PopularMovieViewModel
+import com.example.moviego.utils.ResourceState
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
@@ -17,14 +18,14 @@ class HomeFragment : Fragment() {
 
     lateinit var viewBinding: FragmentHomeBinding
     val list = arrayListOf<Int>()
-    val popularMovieViewModel : PopularMovieViewModel by viewModel()
+    val popularMovieViewModel: PopularMovieViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        viewBinding = FragmentHomeBinding.inflate(layoutInflater,container,false)
+        viewBinding = FragmentHomeBinding.inflate(layoutInflater, container, false)
         return viewBinding.root
     }
 
@@ -33,16 +34,74 @@ class HomeFragment : Fragment() {
 
         popularMovieViewModel.getPopularMovies()
         popularMovieViewModel.getTopRatedMovies()
+        popularMovieViewModel.getNowPlayingMovies()
 
-        popularMovieViewModel.topRatedMovies.observe(viewLifecycleOwner){
-            if (it != null){
-                viewBinding.recyclerViewTopRated.adapter = PopularMoviesAdapter(it.results)
+        popularMovieViewModel.topRatedMovies.observe(viewLifecycleOwner) {
+
+            when(it.state){
+                ResourceState.SUCCESS ->{
+                    viewBinding.topRatedShimmer.stopShimmerAnimation()
+                    viewBinding.topRatedShimmer.visibility = View.GONE
+                    viewBinding.recyclerViewTopRated.adapter = it.data?.results?.let { it1 ->
+                        PopularMoviesAdapter(
+                            it1
+                        )
+                    }
+                }
+                ResourceState.LOADING ->{
+                    viewBinding.topRatedShimmer.startShimmerAnimation()
+                    viewBinding.topRatedShimmer.visibility = View.VISIBLE
+                }
+                ResourceState.ERROR -> {
+                    viewBinding.topRatedShimmer.stopShimmerAnimation()
+                    viewBinding.topRatedShimmer.visibility = View.GONE
+                }
+            }
+
+        }
+
+        popularMovieViewModel.popularMovies.observe(viewLifecycleOwner) {
+            when (it.state) {
+
+                ResourceState.SUCCESS -> {
+                    viewBinding.popularShimmer.stopShimmerAnimation()
+                    viewBinding.popularShimmer.visibility = View.GONE
+                    viewBinding.recyclerViewPopular.adapter = it.data?.results?.let { it1 ->
+                        PopularMoviesAdapter(
+                            it1
+                        )
+                    }
+                }
+                ResourceState.LOADING -> {
+                    viewBinding.popularShimmer.startShimmerAnimation()
+                    viewBinding.popularShimmer.visibility = View.VISIBLE
+                }
+                ResourceState.ERROR -> {
+                    viewBinding.popularShimmer.stopShimmerAnimation()
+                    viewBinding.popularShimmer.visibility = View.GONE
+                }
             }
         }
 
-        popularMovieViewModel.popularMovies.observe(viewLifecycleOwner){
-            if (it != null){
-                viewBinding.recyclerViewPopular.adapter = PopularMoviesAdapter(it.results)
+        popularMovieViewModel.nowPlayingMovies.observe(viewLifecycleOwner){
+            when(it.state){
+                ResourceState.SUCCESS ->{
+                    viewBinding.nowPlayingShimmer.stopShimmerAnimation()
+                    viewBinding.nowPlayingShimmer.visibility = View.GONE
+                    viewBinding.recyclerViewNowPlaying.adapter = it.data?.results?.let { it1 ->
+                        PopularMoviesAdapter(
+                            it1
+                        )
+                    }
+                }
+                ResourceState.ERROR ->{
+                    viewBinding.nowPlayingShimmer.stopShimmerAnimation()
+                    viewBinding.nowPlayingShimmer.visibility = View.GONE
+                }
+                ResourceState.LOADING ->{
+                    viewBinding.nowPlayingShimmer.startShimmerAnimation()
+                    viewBinding.nowPlayingShimmer.visibility = View.VISIBLE
+                }
             }
         }
 

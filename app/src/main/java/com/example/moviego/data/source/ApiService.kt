@@ -11,4 +11,7 @@ interface ApiService {
 
     @GET("top_rated")
     suspend fun getTopRatedMovies(): PopularMoviesModels
+
+    @GET("now_playing")
+    suspend fun getNowPlayingMovies(): PopularMoviesModels
 }

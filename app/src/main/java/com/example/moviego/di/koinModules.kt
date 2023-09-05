@@ -11,7 +11,6 @@ val koinModules = module {
     viewModel{PopularMovieViewModel(get())}
 
 
-
     factory { GetMainResponseUseCase(mainRepository = get()) }
     single<MainRepository> {
         MainRepositoryImp(apiService = get())
