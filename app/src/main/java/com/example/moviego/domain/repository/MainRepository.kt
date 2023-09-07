@@ -6,4 +6,6 @@ interface MainRepository {
     suspend fun getPopularMovies(): PopularMoviesModels
 
     suspend fun getTopRatedMovies(): PopularMoviesModels
+
+    suspend fun getNowPlayingMovies(): PopularMoviesModels
 }
