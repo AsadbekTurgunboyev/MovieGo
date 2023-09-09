@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit
 
 
 private const val TIME_OUT = 30L
-const val BASE_URL: String = "https://api.themoviedb.org/3/movie/"
+const val BASE_URL: String = "https://api.themoviedb.org/3/"
 const val IMAGE_URL: String = "https://image.tmdb.org/t/p/w500"
 
 const val token = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwOWY1ODExYzcyYWYwNmUyNjc3YmIwM2U2ZDIzZmU2MyIsInN1YiI6IjY0ZTllNTcwZTg5NGE2MDExZWY4OTBjYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.DOAVfOVdM5U7PGT6scpn0D4O92N5LJ0rNv-ThaW7JjU"
