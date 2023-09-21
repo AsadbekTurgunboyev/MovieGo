@@ -2,6 +2,7 @@ package com.example.moviego.domain.repository
 
 import com.example.moviego.domain.models.DetailMovieModel
 import com.example.moviego.domain.models.ImagesMovieModel
+import com.example.moviego.domain.models.PlayMovieModel
 import com.example.moviego.domain.models.PopularMoviesModels
 
 interface MainRepository {
@@ -14,4 +15,6 @@ interface MainRepository {
     suspend fun getDetailMovie(movie_id: Int): DetailMovieModel
 
     suspend fun getMovieImages(movie_id: Int): ImagesMovieModel
+
+    suspend fun getMoviePlay(movie_id: Int): PlayMovieModel
 }

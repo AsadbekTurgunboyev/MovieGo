@@ -106,6 +106,7 @@ class HomeFragment : Fragment() {
         }
 
 
+        list.clear()
         list.add(R.drawable.tv)
         list.add(R.drawable.movie)
         list.add(R.drawable.shows)

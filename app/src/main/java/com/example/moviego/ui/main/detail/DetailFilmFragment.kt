@@ -1,9 +1,11 @@
 package com.example.moviego.ui.main.detail
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.example.moviego.ui.main.play.PlayMovieActivity
 import com.example.moviego.databinding.FragmentDetailFilmBinding
 import com.example.moviego.di.IMAGE_URL
 import com.example.moviego.domain.models.DetailMovieModel
@@ -27,6 +29,13 @@ class DetailFilmFragment : AppCompatActivity() {
 
         viewModel.getDetailMovie(movieId)
         viewModel.getMovieImages(movieId)
+
+
+        viewBinding.playMovie.setOnClickListener {
+            val intent = Intent(this, PlayMovieActivity::class.java)
+            intent.putExtra("movie_id",movieId)
+            startActivity(intent)
+        }
 
         viewModel.detailMovie.observe(this){
             when(it.state){
