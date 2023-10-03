@@ -15,4 +15,8 @@ class GetMainResponseUseCase(private val mainRepository: MainRepository) {
     suspend fun getMovieImages(movie_id: Int) = mainRepository.getMovieImages(movie_id = movie_id)
 
     suspend fun getMoviePlay(movie_id: Int) = mainRepository.getMoviePlay(movie_id)
+
+    suspend fun searchMovie(query:String) = mainRepository.searchMovie(query = query)
+
+    suspend fun searchMovieWithKeyword(query:String) = mainRepository.searchMovieWithKeyword(query = query)
 }

@@ -5,6 +5,8 @@ import com.example.moviego.domain.models.DetailMovieModel
 import com.example.moviego.domain.models.ImagesMovieModel
 import com.example.moviego.domain.models.PlayMovieModel
 import com.example.moviego.domain.models.PopularMoviesModels
+import com.example.moviego.domain.models.SearchMovieModel
+import com.example.moviego.domain.models.SearchMovieWithKeywordModel
 import com.example.moviego.domain.repository.MainRepository
 
 class MainRepositoryImp(val apiService: ApiService): MainRepository {
@@ -32,6 +34,14 @@ class MainRepositoryImp(val apiService: ApiService): MainRepository {
 
     override suspend fun getMoviePlay(movie_id: Int): PlayMovieModel {
         return apiService.getPlayMovie(movie_id)
+    }
+
+    override suspend fun searchMovie(query: String): SearchMovieModel {
+        return apiService.searchMovie(query = query)
+    }
+
+    override suspend fun searchMovieWithKeyword(query: String): SearchMovieWithKeywordModel {
+        return apiService.searchMovieWithKeyword(query = query)
     }
 
 }

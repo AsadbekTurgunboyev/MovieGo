@@ -82,6 +82,7 @@
                 <com.google.android.material.button.MaterialButton
                     android:layout_width="wrap_content"
                     android:text="See all"
+                    android:id="@+id/now_playing_see_all"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     style="@style/Widget.MaterialComponents.Button.TextButton"
@@ -127,6 +128,7 @@
                 <com.google.android.material.button.MaterialButton
                     android:layout_width="wrap_content"
                     android:text="See all"
+                    android:id="@+id/top_rated_see_all"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     style="@style/Widget.MaterialComponents.Button.TextButton"
@@ -173,6 +175,7 @@
                 <com.google.android.material.button.MaterialButton
                     android:layout_width="wrap_content"
                     android:text="See all"
+                    android:id="@+id/popular_see_all"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     style="@style/Widget.MaterialComponents.Button.TextButton"
@@ -218,6 +221,7 @@
                 <com.google.android.material.button.MaterialButton
                     android:layout_width="wrap_content"
                     android:text="See all"
+                    android:id="@+id/upcoming_see_all"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     style="@style/Widget.MaterialComponents.Button.TextButton"

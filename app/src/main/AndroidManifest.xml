@@ -30,7 +30,9 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true"></activity>
+            android:exported="true"/>
+        <activity android:name=".ui.main.seeAll.SeeAllFragment"
+            android:exported="false"/>
         <activity
             android:name=".ui.main.detail.DetailFilmFragment"
             android:exported="false" />

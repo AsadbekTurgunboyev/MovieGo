@@ -8,8 +8,6 @@
 
     <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
         android:layout_width="match_parent"
-        app:autoPlay="true"
-        app:videoId=""
         android:id="@+id/play_youtube"
         android:layout_height="match_parent"/>
 </LinearLayout>

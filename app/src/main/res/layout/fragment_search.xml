@@ -63,30 +63,45 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        style="@style/ThemeOverlay.Material3.TextInputEditText.FilledBox"
         android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/_10sdp"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         app:boxBackgroundColor="@color/splashScreenBackground"
-        app:hintAnimationEnabled="false"
         app:boxCornerRadiusBottomEnd="@dimen/_10sdp"
         app:boxCornerRadiusBottomStart="@dimen/_10sdp"
         app:boxCornerRadiusTopEnd="@dimen/_10sdp"
-        app:endIconMode="clear_text"
-        app:startIconTint="@color/white"
-        app:endIconTint="@color/white"
-        app:startIconDrawable="@drawable/ic_search"
         app:boxCornerRadiusTopStart="@dimen/_10sdp"
+        app:endIconMode="clear_text"
+        app:endIconTint="@color/white"
+        app:hintAnimationEnabled="false"
         app:hintEnabled="false"
-        style="@style/ThemeOverlay.Material3.TextInputEditText.FilledBox"
-        android:layout_marginHorizontal="@dimen/_10sdp"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+        app:startIconDrawable="@drawable/ic_search"
+        app:startIconTint="@color/white"
+        tools:layout_editor_absoluteX="13dp">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/search_movie_edittext"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:hint="Search.."
+
+            android:singleLine="true"
+            android:imeOptions="actionSearch"
+            android:maxLines="1"
             android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            android:layout_height="wrap_content" />
+            android:textColorHint="@color/white" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recylerview_search"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 </androidx.constraintlayout.widget.ConstraintLayout>

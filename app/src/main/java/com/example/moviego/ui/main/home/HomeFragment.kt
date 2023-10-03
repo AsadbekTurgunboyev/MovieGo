@@ -1,5 +1,6 @@
 package com.example.moviego.ui.main.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,8 +11,15 @@ import com.example.moviego.databinding.FragmentHomeBinding
 import com.example.moviego.ui.main.home.adapter.PopularMoviesAdapter
 import com.example.moviego.ui.main.home.adapter.TypeAdapter
 import com.example.moviego.ui.main.home.viewmodel.PopularMovieViewModel
+import com.example.moviego.ui.main.seeAll.SeeAllFragment
 import com.example.moviego.utils.ResourceState
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
+
+const val TOP_RATED = 1
+const val POPULAR = 2
+const val NOW_PLAYING = 3
+
 
 class HomeFragment : Fragment() {
 
@@ -36,10 +44,16 @@ class HomeFragment : Fragment() {
         popularMovieViewModel.getTopRatedMovies()
         popularMovieViewModel.getNowPlayingMovies()
 
+        with(viewBinding) {
+            popularSeeAll.setOnClickListener { clickSeeAllButton(POPULAR) }
+
+            topRatedSeeAll.setOnClickListener { clickSeeAllButton(TOP_RATED) }
+            nowPlayingSeeAll.setOnClickListener { clickSeeAllButton(NOW_PLAYING) }
+        }
         popularMovieViewModel.topRatedMovies.observe(viewLifecycleOwner) {
 
-            when(it.state){
-                ResourceState.SUCCESS ->{
+            when (it.state) {
+                ResourceState.SUCCESS -> {
                     viewBinding.topRatedShimmer.stopShimmerAnimation()
                     viewBinding.topRatedShimmer.visibility = View.GONE
                     viewBinding.recyclerViewTopRated.adapter = it.data?.results?.let { it1 ->
@@ -48,10 +62,12 @@ class HomeFragment : Fragment() {
                         )
                     }
                 }
-                ResourceState.LOADING ->{
+
+                ResourceState.LOADING -> {
                     viewBinding.topRatedShimmer.startShimmerAnimation()
                     viewBinding.topRatedShimmer.visibility = View.VISIBLE
                 }
+
                 ResourceState.ERROR -> {
                     viewBinding.topRatedShimmer.stopShimmerAnimation()
                     viewBinding.topRatedShimmer.visibility = View.GONE
@@ -72,10 +88,12 @@ class HomeFragment : Fragment() {
                         )
                     }
                 }
+
                 ResourceState.LOADING -> {
                     viewBinding.popularShimmer.startShimmerAnimation()
                     viewBinding.popularShimmer.visibility = View.VISIBLE
                 }
+
                 ResourceState.ERROR -> {
                     viewBinding.popularShimmer.stopShimmerAnimation()
                     viewBinding.popularShimmer.visibility = View.GONE
@@ -83,9 +101,9 @@ class HomeFragment : Fragment() {
             }
         }
 
-        popularMovieViewModel.nowPlayingMovies.observe(viewLifecycleOwner){
-            when(it.state){
-                ResourceState.SUCCESS ->{
+        popularMovieViewModel.nowPlayingMovies.observe(viewLifecycleOwner) {
+            when (it.state) {
+                ResourceState.SUCCESS -> {
                     viewBinding.nowPlayingShimmer.stopShimmerAnimation()
                     viewBinding.nowPlayingShimmer.visibility = View.GONE
                     viewBinding.recyclerViewNowPlaying.adapter = it.data?.results?.let { it1 ->
@@ -94,11 +112,13 @@ class HomeFragment : Fragment() {
                         )
                     }
                 }
-                ResourceState.ERROR ->{
+
+                ResourceState.ERROR -> {
                     viewBinding.nowPlayingShimmer.stopShimmerAnimation()
                     viewBinding.nowPlayingShimmer.visibility = View.GONE
                 }
-                ResourceState.LOADING ->{
+
+                ResourceState.LOADING -> {
                     viewBinding.nowPlayingShimmer.startShimmerAnimation()
                     viewBinding.nowPlayingShimmer.visibility = View.VISIBLE
                 }
@@ -116,6 +136,13 @@ class HomeFragment : Fragment() {
 
 
         viewBinding.recyclerView.adapter = TypeAdapter(list)
+    }
+
+    private fun clickSeeAllButton(type: Int) {
+        val intent = Intent(requireContext(), SeeAllFragment::class.java)
+        intent.putExtra("see_all", type)
+        startActivity(intent)
+
     }
 
 }
